@@ -37,4 +37,45 @@ export class MascotasService {
     if (!mascota) return null;
     return this.mascotaRepository.remove(mascota);
   }
+
+    dosis_total_nacimiento(objeto: object){
+    let lista =[];
+    let dosisTotal: number = 0;
+    lista.forEach((item: number,i: any)=>{
+      dosisTotal = dosisTotal + item;
+    })
+    let mensaje : string = '';
+    if(dosisTotal < 100){
+      mensaje = 'Tratamiento baja intensidad';
+    } else if(dosisTotal >= 100 && dosisTotal <=300){
+        mensaje = 'Tratamiento moderado';
+    } else {
+      mensaje = 'Tratamiento fuerte, seguir observacion'
+    }
+
+    return {
+      "dosisTotal": dosisTotal,
+      "mensaje": mensaje
+    }
+  }
+
+  controlPeso(pesoActual:number, pesoIdeal:number){
+    let diferencia: number = pesoActual - pesoIdeal;
+    let mensaje: string = '';
+
+    if(diferencia > 0 ){
+      mensaje = 'La mascota esta por encima del peso ideal';
+    } else if (diferencia < 0){
+      mensaje = 'La mascota esta por debajo del peso ideal';
+    } else if (diferencia = 0){
+      mensaje = 'Peso ideal alcanzado';
+    }
+
+    return {
+      "diferencia": diferencia,
+      "mensaje": mensaje
+    }
+  }
+
+
 }

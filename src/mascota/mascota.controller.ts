@@ -31,4 +31,14 @@ export class MascotasController {
   remove(@Param('id') id: string) {
     return this.mascotasService.remove(id);
   }
+
+  @Post('/dosis-total')
+  dosis_total_nacimiento(@Body() dosis_total_nacimiento){
+    return this.mascotasService.create(dosis_total_nacimiento);
+  }
+
+  @Post('/peso-ideal')
+  controlPeso(@Body() controlPeso){
+    return this.mascotasService.create(controlPeso);
+  }
 }
